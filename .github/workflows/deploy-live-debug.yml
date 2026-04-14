@@ -37,6 +37,14 @@ jobs:
         run: npm ci
         working-directory: frontend/live-debug
 
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps chromium
+        working-directory: frontend/live-debug
+
+      - name: Run Playwright tests
+        run: npm run test:smoke
+        working-directory: frontend/live-debug
+
       - name: Build app for GitHub Pages
         run: npm run build -- --base "/${{ github.event.repository.name }}/"
         working-directory: frontend/live-debug
