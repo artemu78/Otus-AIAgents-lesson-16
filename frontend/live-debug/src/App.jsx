@@ -83,6 +83,23 @@ const dresses = [
     price: 145,
     category: 'casual',
     icon: '⚓'
+  },
+  // Summer Collection
+  {
+    id: 11,
+    name: 'Azure Breeze Maxi',
+    description: 'Lightweight sky blue cotton maxi with spaghetti straps',
+    price: 185,
+    category: 'summer',
+    icon: '☁'
+  },
+  {
+    id: 12,
+    name: 'Lemon Zest Sundress',
+    description: 'Bright yellow linen dress with button-down front',
+    price: 155,
+    category: 'summer',
+    icon: '☀'
   }
 ]
 
@@ -138,6 +155,8 @@ function App() {
             <li><a href="#" onClick={(e) => { e.preventDefault(); setActiveFilter('all'); }}>Collection</a></li>
             <li><a href="#" onClick={(e) => { e.preventDefault(); setActiveFilter('evening'); }}>Evening</a></li>
             <li><a href="#" onClick={(e) => { e.preventDefault(); setActiveFilter('casual'); }}>Casual</a></li>
+            <li><a href="#" onClick={(e) => { e.preventDefault(); setActiveFilter('summer'); }}>Summer</a></li>
+            <li><a href="#" onClick={(e) => { e.preventDefault(); setActiveFilter('workwear'); }}>Workwear</a></li>
             <li><a href="#">About</a></li>
           </ul>
         </nav>
@@ -179,34 +198,55 @@ function App() {
         >
           Casual
         </button>
+        <button
+          className={`filter-button ${activeFilter === 'summer' ? 'active' : ''}`}
+          onClick={() => setActiveFilter('summer')}
+        >
+          Summer
+        </button>
+        <button
+          className={`filter-button ${activeFilter === 'workwear' ? 'active' : ''}`}
+          onClick={() => setActiveFilter('workwear')}
+        >
+          Workwear
+        </button>
       </div>
 
       {/* Products Grid */}
       <section className="products-section">
         <div className="products-grid">
-          {filteredDresses.map(dress => (
-            <article key={dress.id} className="product-card">
-              <div className="product-image">
-                <span className="product-image-placeholder">{dress.icon}</span>
-                <span className="product-category-tag">
-                  {dress.category}
-                </span>
-              </div>
-              <div className="product-info">
-                <h3 className="product-name">{dress.name}</h3>
-                <p className="product-description">{dress.description}</p>
-                <div className="product-footer">
-                  <span className="product-price">${dress.price}</span>
-                  <button
-                    className="add-to-cart"
-                    onClick={() => addToCart(dress)}
-                  >
-                    Add to Bag
-                  </button>
+          {filteredDresses.length === 0 ? (
+            <div className="no-products">
+              <p>No products found</p>
+              <button className="clear-filter-btn" onClick={() => setActiveFilter('all')}>
+                Clear Filters
+              </button>
+            </div>
+          ) : (
+            filteredDresses.map(dress => (
+              <article key={dress.id} className="product-card">
+                <div className="product-image">
+                  <span className="product-image-placeholder">{dress.icon}</span>
+                  <span className="product-category-tag">
+                    {dress.category}
+                  </span>
                 </div>
-              </div>
-            </article>
-          ))}
+                <div className="product-info">
+                  <h3 className="product-name">{dress.name}</h3>
+                  <p className="product-description">{dress.description}</p>
+                  <div className="product-footer">
+                    <span className="product-price">${dress.price}</span>
+                    <button
+                      className="add-to-cart"
+                      onClick={() => addToCart(dress)}
+                    >
+                      Add to Bag
+                    </button>
+                  </div>
+                </div>
+              </article>
+            ))
+          )}
         </div>
       </section>
 
