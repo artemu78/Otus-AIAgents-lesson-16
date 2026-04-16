@@ -7,7 +7,7 @@ test.describe('Product Filtering', () => {
 
   test('should show all products by default', async ({ page }) => {
     const productCards = page.locator('.product-card');
-    await expect(productCards).toHaveCount(10);
+    await expect(productCards).toHaveCount(12);
     
     // Check if 'All Pieces' is active
     const allButton = page.locator('button:has-text("All Pieces")');
@@ -49,13 +49,9 @@ test.describe('Product Filtering', () => {
   });
 
   test('should show "No products found" for empty categories', async ({ page }) => {
-    // This will fail until Summer or Workwear is added with 0 products
-    // Or if I add them and they have no products.
-    // I will add them in the next step.
-    const summerButton = page.locator('button:has-text("Summer")');
-    
-    // If the button exists, click it. If not, this test will fail as expected for "starting with a test".
-    await summerButton.click();
+    // Summer now has products, so we use Workwear which is currently empty
+    const workwearButton = page.locator('button:has-text("Workwear")');
+    await workwearButton.click();
     
     const noProductsMsg = page.locator('text=No products found');
     await expect(noProductsMsg).toBeVisible();
