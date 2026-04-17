@@ -8,7 +8,8 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test:smoke": "playwright test"
+    "playwright:install": "PLAYWRIGHT_BROWSERS_PATH=./.pw-browsers playwright install --with-deps chromium",
+    "test:smoke": "PLAYWRIGHT_BROWSERS_PATH=./.pw-browsers playwright test"
   },
   "dependencies": {
     "react": "^19.2.4",
@@ -16,6 +17,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",
+    "@playwright/test": "^1.59.1",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.1",
@@ -23,7 +25,6 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.4.0",
-    "vite": "^8.0.4",
-    "@playwright/test": "^1.50.1"
+    "vite": "^8.0.4"
   }
 }

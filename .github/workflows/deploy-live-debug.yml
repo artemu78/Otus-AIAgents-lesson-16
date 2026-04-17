@@ -45,6 +45,14 @@ jobs:
         run: npm run test:smoke
         working-directory: frontend/live-debug
 
+      - name: Upload Playwright report
+        uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: frontend/live-debug/playwright-report/
+          retention-days: 30
+
       - name: Build app for GitHub Pages
         run: npm run build -- --base "/${{ github.event.repository.name }}/"
         working-directory: frontend/live-debug
