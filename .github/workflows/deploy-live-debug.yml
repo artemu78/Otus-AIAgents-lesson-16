@@ -38,7 +38,7 @@ jobs:
         working-directory: frontend/live-debug
 
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps chromium
+        run: npm run playwright:install
         working-directory: frontend/live-debug
 
       - name: Run Playwright tests
