@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
+import Login from './components/Login'
 
 const dresses = [
   // Evening Collection
@@ -107,6 +108,33 @@ function App() {
   const [cart, setCart] = useState([])
   const [isCartOpen, setIsCartOpen] = useState(false)
   const [activeFilter, setActiveFilter] = useState('all')
+  const [isLoginOpen, setIsLoginOpen] = useState(false)
+  const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    // Check if user is logged in via cookie
+    const token = document.cookie.split('; ').find(row => row.startsWith('sb-access-token='))
+    if (token) {
+      // In a real app, we would fetch user data from Supabase using the token
+      // For now, we'll just set a placeholder or look for a stored user info
+      const storedUser = localStorage.getItem('elise_user')
+      if (storedUser) {
+        setUser(JSON.parse(storedUser))
+      }
+    }
+  }, [])
+
+  const handleLoginSuccess = (userData) => {
+    setUser(userData)
+    localStorage.setItem('elise_user', JSON.stringify(userData))
+  }
+
+  const handleLogout = () => {
+    document.cookie = 'sb-access-token=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;'
+    document.cookie = 'sb-refresh-token=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;'
+    localStorage.removeItem('elise_user')
+    setUser(null)
+  }
 
   const filteredDresses = activeFilter === 'all'
     ? dresses
@@ -160,15 +188,25 @@ function App() {
             <li><a href="#">About</a></li>
           </ul>
         </nav>
-        <button className="cart-button" onClick={() => setIsCartOpen(true)}>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
-            <path d="M3 6h18"/>
-            <path d="M16 10a4 4 0 01-8 0"/>
-          </svg>
-          Bag
-          {totalItems > 0 && <span className="cart-count">{totalItems}</span>}
-        </button>
+        <div className="header-actions">
+          {user ? (
+            <div className="user-menu">
+              <span className="user-name">Bonjour, {user.email.split('@')[0]}</span>
+              <button className="auth-toggle" onClick={handleLogout}>Log Out</button>
+            </div>
+          ) : (
+            <button className="auth-toggle" onClick={() => setIsLoginOpen(true)}>Sign In</button>
+          )}
+          <button className="cart-button" onClick={() => setIsCartOpen(true)}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+              <path d="M3 6h18"/>
+              <path d="M16 10a4 4 0 01-8 0"/>
+            </svg>
+            Bag
+            {totalItems > 0 && <span className="cart-count">{totalItems}</span>}
+          </button>
+        </div>
       </header>
 
       {/* Hero */}
@@ -354,6 +392,12 @@ function App() {
           </div>
         )}
       </aside>
+
+      <Login 
+        isOpen={isLoginOpen} 
+        onClose={() => setIsLoginOpen(false)} 
+        onLoginSuccess={handleLoginSuccess}
+      />
     </>
   )
 }
