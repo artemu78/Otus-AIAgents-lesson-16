@@ -38,6 +38,14 @@ body {
   min-height: 100vh;
 }
 
+.centerDiv {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+  font-size: 20pt;
+}
+
 /* Scrollbar Styling */
 ::-webkit-scrollbar {
   width: 8px;
@@ -102,3 +110,4 @@ body {
     background-position: 200% 0;
   }
 }
+

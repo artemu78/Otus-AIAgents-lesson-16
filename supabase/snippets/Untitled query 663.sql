@@ -1,0 +1,1 @@
+update goods set title='hafa-nana' where id='9be0fc1b-bf4b-4d71-a814-7a32e19b4bab'

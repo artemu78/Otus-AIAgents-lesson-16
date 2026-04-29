@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import './Login.css';
+import { signInWithPassword } from '../../api/auth';
 
-const SUPABASE_URL = 'https://fvpjxiynohehrlokrrvh.supabase.co';
-const ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY || 'YOUR_ANON_KEY';
-
-function Login({ isOpen, onClose, onLoginSuccess }) {
+export function Login({ isOpen, onClose, onLoginSuccess }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -16,33 +14,7 @@ function Login({ isOpen, onClose, onLoginSuccess }) {
     setError(null);
 
     try {
-      const response = await fetch(`${SUPABASE_URL}/auth/v1/token?grant_type=password`, {
-        method: 'POST',
-        headers: {
-          'apikey': ANON_KEY,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error_description || data.error || 'Login failed');
-      }
-
-      // Store JWT in cookie
-      // The token is in data.access_token
-      const expires = new Date(Date.now() + data.expires_in * 1000).toUTCString();
-      document.cookie = `sb-access-token=${data.access_token}; path=/; expires=${expires}; SameSite=Lax; Secure`;
-      
-      if (data.refresh_token) {
-        document.cookie = `sb-refresh-token=${data.refresh_token}; path=/; expires=${expires}; SameSite=Lax; Secure`;
-      }
-
+      const data = await signInWithPassword({ email, password });
       onLoginSuccess(data.user);
       onClose();
     } catch (err) {
@@ -103,5 +75,3 @@ function Login({ isOpen, onClose, onLoginSuccess }) {
     </div>
   );
 }
-
-export default Login;

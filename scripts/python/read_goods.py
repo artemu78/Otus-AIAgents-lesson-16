@@ -27,9 +27,9 @@ import argparse
 from dotenv import load_dotenv
 from supabase import create_client, Client
 import ollama
+from pathlib import Path
 
-# Load environment variables
-load_dotenv()
+load_dotenv(dotenv_path=Path(__file__).with_name(".env"))
 
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_KEY = os.getenv("SUPABASE_KEY")
