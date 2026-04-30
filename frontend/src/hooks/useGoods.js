@@ -26,7 +26,7 @@ export function useGoods() {
   const searchGoods = async (query, embedding = null) => {
     try {
       setLoading(true)
-      if (embedding) {
+      if (Array.isArray(embedding) && embedding.length > 0) {
         const { data, error: rpcError } = await supabase.rpc('match_goods', {
           query_embedding: embedding,
           match_threshold: 0.2,

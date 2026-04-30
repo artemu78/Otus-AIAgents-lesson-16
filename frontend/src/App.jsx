@@ -10,6 +10,7 @@ import { ProductGrid } from './components/ProductGrid'
 import { getCurrentUser, signOut } from './api/auth'
 import { useGoods } from './hooks/useGoods'
 import { transformDresses } from './lib/getgoo'
+import { getEmbedding } from './lib/getEmbedding'
 
 function App() {
   const [dresses, setDresses] = useState([])
@@ -23,9 +24,7 @@ function App() {
   const [isSearching, setIsSearching] = useState(false)
 
   useEffect(() => {
-    if (goods.length > 0) {
-      setDresses(transformDresses(goods))
-    }
+    setDresses(transformDresses(goods))
   }, [goods])
 
   useEffect(() => {
@@ -60,7 +59,8 @@ function App() {
     setIsSearching(true)
     
     try {
-      const results = await searchGoods(query)
+      const embedding = await getEmbedding(query)
+      const results = await searchGoods(query, embedding)
       setSearchResults(transformDresses(results))
     } catch (err) {
       console.error('Search failed:', err)

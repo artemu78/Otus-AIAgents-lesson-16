@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
 import { CategoryRealtimePage } from './pages/CategoryRealtimePage.jsx'
+import { AdminPage } from './pages/AdminPage.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -11,6 +12,7 @@ createRoot(document.getElementById('root')).render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/category-realtime" element={<CategoryRealtimePage />} />
+        <Route path="/admin" element={<AdminPage />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

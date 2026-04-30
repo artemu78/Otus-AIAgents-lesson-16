@@ -10,7 +10,7 @@
       "source": "supabase/agent-skills",
       "sourceType": "github",
       "skillPath": "skills/supabase/SKILL.md",
-      "computedHash": "d836a3567233bc5367d3f5f78cf0d90289f2b2385e37d22f450886e435e15c73"
+      "computedHash": "0ce63e50091bf00c6a5a844960235aa907c2dd5184d709b37692d673cc56aa12"
     },
     "supabase-postgres-best-practices": {
       "source": "supabase/agent-skills",

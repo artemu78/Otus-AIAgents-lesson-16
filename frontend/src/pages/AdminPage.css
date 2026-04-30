@@ -1,0 +1,209 @@
+.admin-page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  font-family: sans-serif;
+}
+
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.admin-header h1 { margin: 0; font-size: 1.5rem; }
+
+.admin-back { color: #555; text-decoration: none; font-size: 0.9rem; }
+.admin-back:hover { text-decoration: underline; }
+
+.admin-error {
+  background: #fee2e2;
+  color: #b91c1c;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.admin-form {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.admin-form h2 { margin: 0 0 1rem; font-size: 1.1rem; }
+
+.admin-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.admin-form-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.admin-form-grid label:nth-child(2) { grid-column: 1 / -1; }
+
+.admin-form-grid input,
+.admin-form-grid textarea {
+  padding: 0.45rem 0.6rem;
+  border: 1px solid #d1d5db;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  resize: vertical;
+}
+
+.admin-form-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.admin-toolbar { margin-bottom: 1rem; }
+
+.admin-loading { color: #888; }
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.admin-table th {
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  background: #f3f4f6;
+  border-bottom: 2px solid #e5e7eb;
+  font-weight: 600;
+  color: #374151;
+}
+
+.admin-table td {
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid #e5e7eb;
+  vertical-align: top;
+}
+
+.admin-table tr.editing td { background: #eff6ff; }
+
+.admin-desc {
+  max-width: 280px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #6b7280;
+}
+
+.admin-actions { display: flex; gap: 0.4rem; white-space: nowrap; }
+
+/* Buttons */
+.btn-primary {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 0.45rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+.btn-primary:hover:not(:disabled) { background: #1d4ed8; }
+
+.btn-secondary {
+  background: #fff;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  padding: 0.45rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+.btn-secondary:hover:not(:disabled) { background: #f9fafb; }
+
+.btn-edit {
+  background: #fff;
+  color: #2563eb;
+  border: 1px solid #2563eb;
+  padding: 0.3rem 0.7rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+.btn-edit:hover:not(:disabled) { background: #eff6ff; }
+
+.btn-delete {
+  background: #fff;
+  color: #dc2626;
+  border: 1px solid #dc2626;
+  padding: 0.3rem 0.7rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+.btn-delete:hover:not(:disabled) { background: #fef2f2; }
+
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* Login gate */
+.admin-login-wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f3f4f6;
+}
+
+.admin-login-form {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.admin-login-form h2 { margin: 0; font-size: 1.25rem; }
+
+.admin-login-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.admin-login-form input {
+  padding: 0.5rem 0.65rem;
+  border: 1px solid #d1d5db;
+  border-radius: 5px;
+  font-size: 0.9rem;
+}
+
+.admin-login-form .btn-primary { width: 100%; padding: 0.6rem; }
+
+.admin-loading-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+}
+
+.admin-header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.admin-user { font-size: 0.85rem; color: #6b7280; }

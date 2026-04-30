@@ -279,7 +279,7 @@
 }
 
 .product-image {
-  aspect-ratio: 3/4;
+  aspect-ratio: 3/1;
   background: linear-gradient(135deg, var(--champagne) 0%, var(--ivory) 100%);
   display: flex;
   align-items: center;
@@ -327,7 +327,7 @@
 
 .product-name {
   font-family: var(--font-display);
-  font-size: 1.1rem;
+  font-size: 2rem;
   font-weight: 500;
   color: var(--charcoal);
   margin-bottom: 0.5rem;
@@ -335,7 +335,7 @@
 
 .product-description {
   font-family: var(--font-body);
-  font-size: 0.9rem;
+  font-size: 1.5rem;
   color: var(--text-muted);
   margin-bottom: 1rem;
   line-height: 1.5;
